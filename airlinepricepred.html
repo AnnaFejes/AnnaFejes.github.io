@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Airline Price Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="left-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header" class="alt">
+				<h1 id="logo"><a style="color:dimgray" href="index.html">Anna Fejes <span>Portfolio</span></a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="current"><a style="color:dimgray" href="index.html">Home</a></li>
+						<li class="submenu">
+							<a style="color:dimgray" href="#">Content</a>
+							<ul>
+								<li class="Projects">
+									<a style="color:dimgray" href="#">Projects</a>
+									<ul>
+										<li><a href="airlinepricepred.html">Airline Price Prediction</a></li>
+										<li><a href="impactassessment.html">Impact Assessment</a></li>
+										<!--<li><a href="left-sidebar.html">Project 3</a></li>
+										<li><a href="left-sidebar.html">Project 4</a></li>
+										<li><a href="left-sidebar.html">Project 5</a></li>-->
+									</ul>
+								<li><a href="contact.html">Contact</a></li>
+								</li>
+							</ul>
+						</li>
+						<li><a href="#" class="button primary">Sign Up</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+				<article id="main">
+
+					<header class="special container">
+						<span class="icon solid featured fa-plane"></span>
+						<h2><strong>Airline Price Prediction</strong></h2>
+						<p>A project in python to predict future airline prices.</p>
+					</header>
+
+					<!-- One -->
+						<section class="wrapper style4 container">
+
+							<div class="row gtr-150">
+								<div class="col-4 col-12-narrower">
+
+									<!-- Sidebar -->
+										<div class="sidebar">
+											<section>
+												<header>
+													<h3>Magna Feugiat</h3>
+												</header>
+												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+												<footer>
+													<ul class="buttons">
+														<li><a href="#" class="button small">Learn More</a></li>
+													</ul>
+												</footer>
+											</section>
+
+											<section>
+												<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+												<header>
+													<h3>Amet Lorem Tempus</h3>
+												</header>
+												<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+												<footer>
+													<ul class="buttons">
+														<li><a href="#" class="button small">Learn More</a></li>
+													</ul>
+												</footer>
+											</section>
+										</div>
+
+								</div>
+								<div class="col-8 col-12-narrower imp-narrower">
+
+									<!-- Content -->
+										<div class="content">
+											<section>
+												<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+												<header>
+													<h3>Project Choice and Initial version</h3>
+												</header>
+												<p>As a novice data scientist, I like to learn by doing, thus I decided to complete a project. The reason to choose a project that is aviation related for me was straight forward, as I work with aviation data in my current role. However my initial assessment actually did not involve python - it was a Power BI project. I mainly work with Power BI at the moment and I'm fairly skilled with it. On the other hand Power BI did not feel like the best solution, the data scientists in my company use Python for their projects and I am curious to learn more - so I used a tool that I normally would not.</p>
+												<p>The project starts with a simple question - is it possible to create a machine learning model that predict airline ticket prices? The answer most certainly yes, especially if we have all the data available - for example using a database like Google created and analysed for their 2023 prediction analysis (Kelleher, 2023). But what can we do with a smaller sample set? There are a number of datasets available on Kaggle - the one used in this project is Yash Dharme's dataset (2023), which is also available in my GitHub repository. To learn how to process the raw data, I used the scraped version, but there is also a cleaned up version, where most of the steps are completed.</p>
+												<p>The dataset has certain limitations – all the sample was taken on the same day, 15th January 2023, which is a Sunday. Therefore, the impact of whether the flight has been purchased on a Tuesday versus Saturday cannot really be observed. Similarly restricted the routes and airlines involved – the source data was collected from India, checking flights between a handful of major Indian cities, and does not include a specific airport if the city has more than one.</p>
+												<header>
+													<h3>Data Cleaning</h3>
+												</header>
+												<p>As the scraped data was loaded into the module it was a fairly clean dataset already, such as no missing values, but certain parts were still waiting for refinement. The 'Airline-Class' column contained three datapoints, and the 'Departure Time' and 'Arrival Time' columns two in the same column. These columns were split by the newliner delimiter. The 'Duration' column was formatted in a 'xxh xxm' text string, which is very hard to analyse as is, and was transformed into minutes instead, similarly to the 'Price' column.</p>
+												<p>In this step a few other columns were added, such as the 'DaysToTravel' which represents the number of days between the 'BookingDate' and 'JourneyDate' columns, since the first one is static throughout the dataset, it was then removed. And 'Haul' was also added: a simple bucketing exercise to determine the length of the journey. However this was not used in the analysis itself as haul refers to the length of the flight rather than the journey - and not all flights were direct flights. Not to mention that the 'Duration' also included the layover time.</p>
+												<p>And lastly the columns were reordered, renamed and the data was sorted according to the ‘DaysToTravel’ column, ascending.</p>
+												<header>
+													<h3>Exploratory Data Analysis</h3>
+												</header>
+												<p>In order to understand the data, I have created two types of visualisations. Firstly a line graph where I compare the prices of different cabin classes together – and as the visualisations show, there was a significant difference of how the pricing varied for each cabin class. The first class tickets had huge variations, around 20,000 Indian Rupees, however it did not decline as much, in fact the highest cabin prices observed around 1 month out from the booking date. Business class tickets, although do reduce over time, are significantly higher than premium economy and economy, and the trend is ever so slightly different. Premium Economy and Economy cabin prices are going in hand to hand, however the only product consistently offered by all airlines – as shown in the very last step in this section – is economy only and there may be significant differences in terms of what offered in each cabin (Flight Centre, n.d.).</p>
+												<p>This is even more obvious when looking at the prices by airlines visualisations – in the initial version, where all classes are included, the most pricey airline is Vistara – however Vistara does not offer First class (Air Vistara, 2023), which should be traditionally more expensive than a Business Class. Once only the Economy class remains, the most expensive airline is Air India in the dataset.</p>
+												<header>
+													<h3>Label Encoding</h3>
+												</header>
+												<p>The initial project was more leaning towards using time series analysis, however as the dataset was not simple and there were various factors that needed to be taken into account, a regression model became more suitable for this task.</p>
+												<p>To achieve this, all key columns should be altered to contain integers instead of text. The following columns were replaced with numeric values: ‘Airline’, ‘Class’, ‘DepartureAirport’, ‘ArrivalAirport, ‘Duration’, ‘DaysToTravel’ and ‘Stops’. Another column was also added to the model – ‘WeekDay’ – to determine the day of the week.</p>
+												<header>
+													<h3>Utilising PyCaret</h3>
+												</header>
+												<p>As python is a common programming language, it has a variety of modules that are preprogrammed for others, and PyCaret is one of them. It can evaluate 81 regression models against the provided training & testing datasets to determine the best one. For this project the best model is determined by the Mean Square Error value of each model compared to the datasets, which is the Random Forest Regressor model. The outputs of this best model is then visualized to show how well did the model predict the values in the test range.</p>
+												<header>
+													<h3>Forecasting</h3>
+												</header>
+												<p>PyCaret can also be utilized to forecast – in order to do that, a dataset with the expected columns need to be set up. It includes all the previous columns before splitting the dataset into training and testing data, but only the ones which are evaluated need to contain values. For example, during the test there was no evaluation based on the ‘Flight’ column, while the model requires it to be added, this can be added as ‘NaN’. The other columns, that are evaluated, should contain the mean of the column. This step is only necessary if we have more than one value per day and we are not sure what flights are going to be in the air in the forecast range.</p>
+												<p>The results prove, that we can predict the airline ticket prices even from a smaller dataset.</p>
+												<header>
+													<h3>Future Recommendations</h3>
+												</header>
+												<p>In the future it would provide valuable if the prices collected could be flexible in terms of region, date, and airline. The geographical location of India may result in unexpected values if there was a holiday on the time period evaluated (Minhas, D. S. 2023), that is not celebrated in the UK for someone who is trying to purchase tickets in the UK, therefore for better analysis the model would need to be collected from the region the traveller is aiming to purchase the flights. It would be valuable to create a process to collect the data for the traveller.</p>
+												<p>Comparing to Power BI, python does offer some unique visualisations, however I do think that more could be done on that side. The Seaborn visualisations (Waskom, S 2022) look very elaborate for example, but there may be further options. Or better yet – connect the two, and create a dashboard in Power BI to display the results of the machine learning model.</p>
+												<p>In order to be able to provide a more detailed forecast, when creating the dataset for forecasting, it would be better to include all the various flights in the forecasting period, rather than taking an average of all for each day. This would enable airline specific forecasting as well as enabling to establish differences between full network service and low-cost carriers pricing strategies in the airline market (Gabor, et al., 2022). It would also open the door for user-selected visualisation of forecasted values.</p>
+												<header>
+													<h3>References</h3>
+												</header>
+												<p>Air Vistara, 2023. Vistara Experience. [Online]
+													Available at: https://www.airvistara.com/np/en/travel-information/vistara-experience/on-board/cabin
+													[Accessed 4 September 2023].
+													</p>
+												<p>Dharme, Y., 2023. <span class="emphasized">Airfare ML : Predicting Flight Fares.</span> [Online] 
+													Available at: https://www.kaggle.com/datasets/yashdharme36/airfare-ml-predicting-flight-fares/code?group=owned
+													[Accessed 3 September 2023].
+													</p>
+												<p>Flight Centre, n.d. Explaining the Differences Between Flying Business Class vs First Class. [Online]
+													Available at: https://www.flightcentre.co.uk/flights/first-and-business/the-difference-between-first-and-business-class
+													[Accessed 4 September 2023].
+													</p>
+												<p>Gabor, M. R., Kardos, M. & Oltean, F. D., 2022. Yield Management—A Sustainable Tool for Airline E-Commerce: Dynamic Comparative Analysis of E-Ticket Prices
+													for Romanian Full-Service Airline vs. Low-Cost Carriers. Sustainability, 14(22), p. 15150.
+													</p>
+												<p>Kelleher, S. R., 2023. <span class="emphasized">Google Now Tells You The Best Time To Book A Flight.</span> [Online] 
+													Available at: https://www.forbes.com/sites/suzannerowankelleher/2023/08/28/google-best-time-to-book-flight/
+													[Accessed 3 September 2023].
+													</p>
+												<p>Minhas, D. S., 2023. Dynamic Airlines Pricing Structure- What we’ve learned. [Online]
+													Available at: https://www.linkedin.com/pulse/dynamic-airlines-pricing-structure-what-weve-learned-singh-minhas/
+													[Accessed 4 September 2023].
+													</p>
+												<p>Waskom, M. 2022. Example Gallery. [Online]
+													Available at: https://seaborn.pydata.org/examples/index.html
+													[Accessed 3 September 2023]
+													</p>
+												<header>
+													<h3>Resources</h3>
+												</header>
+												<p><li><a href="https://github.com/AnnaFejes/AirlinePricing.git">GitHub Repository</a></li>
+													<li><a href="https://www.kaggle.com/datasets/yashdharme36/airfare-ml-predicting-flight-fares/code?group=owned">Data source on Kaggle</a></li>
+													<li><a href="https://medium.com/analytics-vidhya/the-flight-ticket-price-prediction-in-python-using-scikit-learn-library-ee3aefc01224">Helpful Guide</a></li>
+													<li><a href="https://pandas.pydata.org/pandas-docs/stable/index.html">Pandas Documentation</a></li></p>
+											</section>
+										</div>
+
+								</div>
+							</div>
+						</section>
+
+					<!-- Two
+						<section class="wrapper style1 container special">
+							<div class="row">
+								<div class="col-4 col-12-narrower">
+
+									<section>
+										<header>
+											<h3>This is Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="col-4 col-12-narrower">
+
+									<section>
+										<header>
+											<h3>Also Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="col-4 col-12-narrower">
+
+									<section>
+										<header>
+											<h3>Probably Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+							</div>
+						</section> -->
+
+				</article>
+
+		<!-- Footer -->
+			<footer id="footer">
+
+				<ul class="copyright">
+					<li>&copy; Anna Fejes - 2023</li>
+				</ul>
+
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
